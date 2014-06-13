@@ -12,7 +12,10 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 3.0.1'
   gem 'guard-rspec'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
+  if `uname` =~ /Darwin/
+    gem 'terminal-notifier-guard'
+    gem 'rb-fsevent'
+  end
   gem 'byebug'
   gem 'capybara'
   gem 'selenium-webdriver'
