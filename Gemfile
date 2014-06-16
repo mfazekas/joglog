@@ -7,11 +7,14 @@ gem 'omniauth', '~> 1.2.1'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
+gem 'font-awesome-sass', '~> 4.1.0'
+gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 
 group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 3.0.1'
   gem 'guard-rspec'
+  gem 'shoulda-matchers'
   if `uname` =~ /Darwin/
     gem 'terminal-notifier-guard'
     gem 'rb-fsevent'

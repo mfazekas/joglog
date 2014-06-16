@@ -1,0 +1,37 @@
+@import "bootstrap";
+@import "font-awesome";
+@import "bootstrap-social";
+
+html, body {
+  height:100%;
+  width:100%;
+  
+  div.session-container {
+    height:100%;
+    width:100%;
+	display:table;
+	background: url("jogging.jpg") no-repeat center center fixed;
+	background-size: cover;
+      
+    div.sign-in-area {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+
+	 div.sign-in-box {
+	  border-radius:0.6em;
+	  background-color:rgba(200,200,200,0.7);
+	  padding: 3em;
+	  width: auto;
+	  display: inline-block;
+
+      a.log-in-with-gplus {
+        @extend .btn;
+        @extend .btn-social;
+        @extend .btn-lg;
+        @extend .btn-google-plus
+      }
+	 }
+    }
+  }
+}

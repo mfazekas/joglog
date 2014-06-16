@@ -1,0 +1,22 @@
+<%= render partial: 'navbar', locals: {act: :weekly} %>
+
+<h1>Time entry report</h1>
+
+<table class="time-entries">
+  <thead>
+	<tr>
+	  <th>Week</th>
+	  <th>Total distance</th>
+	  <th>Average speed</th>
+    </tr>
+  </thead>
+  <tbody>
+	<% @sums_by_week.each do |sum| %>
+	  <tr>
+	  	<td><%= sum[:week][:year] %>/<%= sum[:week][:week] %></td>
+	  	<td><%= sum[:distance] %></td>
+	  	<td><%= sum[:average] %></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>

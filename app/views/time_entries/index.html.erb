@@ -1,0 +1,27 @@
+<%= render partial: 'navbar', locals: {act: :index} %>
+
+<h1>Listing time entries</h1>
+
+
+<table class="time-entries">
+  <thead>
+	<tr>
+	  <th>Date</th>
+	  <th>Duration</th>
+	  <th>Distance</th>
+	  <th>Average speed</th>
+    </tr>
+  </thead>
+  <tbody>
+	<% @time_entries.each do |time_entry| %>
+	  <tr>
+	  	<td><%= l time_entry.date, format: :short %></td>
+	  	<td><%= distance_of_time_in_words(time_entry.time.seconds) %></td>
+	  	<td><%= number_to_human(time_entry.distance,units: :distance) %></td>
+	  	<td><%= number_to_human_speed(time_entry.average_speed) %></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<%= link_to "New entry", new_time_entry_path(), class: "new-time-entry" %>

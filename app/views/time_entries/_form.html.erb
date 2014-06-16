@@ -1,0 +1,50 @@
+<div class="jumbotron">
+<%= form_for time_entry,html: {role:"form"} do |f| %>
+    <%= render partial: 'shared/error_messages', locals: {target: f.object }%>
+	<div class="field">
+	  <%= f.label :date %>
+	  <div class="field-input">
+		<div class="row">
+		  <div class="col-xs-8 col-md-4"> 
+		    <div class="input-group date">
+	          <%= text_field_tag 'date[date]', f.object.date.try(:strftime,'%m/%d/%Y'), data: {behaviour: 'datepicker'} %>
+		      <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+		    </div>
+	      </div>
+          <div class="col-xs-4 col-md-2">
+            <%= text_field_tag 'date[time]', f.object.date.try(:strftime,'%H:%M') ,placeholder: "HH:MM" %>
+	      </div>
+	    </div>
+	    <span class="help-block">Date in MM/DD/YYYY HH:MM format</span>
+	  </div>
+	  
+	</div>
+	<div class="field">
+	  <%= f.label :time %>
+	  <div class="field-input">
+		<div class='input-group'>
+  	    	<%= f.number_field :time_in_minutes %>
+			<span class="input-group-addon">minutes</span>
+		</div>
+		<span class="help-block">Duration of the run in minutes</span>
+	  </div>
+	  
+	</div>
+	<div class="field">
+  	  <%= f.label :distance %>
+	  <div class="field-input">
+		<div class='input-group'>
+	      <%= f.number_field :distance %>
+	  	  <span class="input-group-addon">meters</span>
+		</div>
+		<span class="help-block">Distance of the run meters</span>
+	  </div>
+	  
+	</div>
+	<div class="submit">
+	  <div class="submit-button">
+	    <%= f.submit %>
+	  </div>
+    </div>
+<% end %>
+</div>

@@ -2,12 +2,12 @@
 
 Write an application that tracks jogging times of users
 
-* User must be able to create an account and log in
-* When logged in, user can see his times he entered
-* Each time entry when entered has a date, distance, and time
-* When displayed, each time entry has an average speed
-* Filter by dates from-to
-* Report on average speed & distance per week
+* User must be able to create an account and log in [:done]
+* When logged in, user can see his times he entered [:todo test view/controller]
+* Each time entry when entered has a date, distance, and time [:todo test view/controller,:todo fix validation display for time_in_minutes, date]
+* When displayed, each time entry has an average speed [:todo test view/controller]
+* Filter by dates from-to[:todo finish]
+* Report on average speed & distance per week[:todo test view/controller,add ui for going back to index view]
 * REST API – for all user actions 
 * In any case you should be able to explain how a REST API works and demonstrate that by creating functional tests that use the REST Layer directly.
 * All actions need to be done client side using AJAX, refreshing the page is not acceptable. 

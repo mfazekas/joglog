@@ -1,0 +1,12 @@
+@import "bootstrap";
+
+table.time-entries {
+  @extend .table;
+  @extend .table-striped;
+  @extend .table-hover;
+}
+
+a.new-time-entry {
+  @extend .btn;
+  @extend .btn-primary;
+}

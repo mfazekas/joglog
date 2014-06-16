@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+	  <a class="navbar-brand" href="#">joglog</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+	  <li class="<%= act == :index ? "active" : ""%>"><a href="<%= time_entries_url %>">Entries<span class="glyphicon glyphicon-list"></span></a></li>	
+	  <li class="<%= act == :weekly ? "active" : ""%>"><a href="<%= weekly_time_entries_url %>">Weekly<span class="glyphicon glyphicon-stats"></span></a></li>	
+	  <li class="dropdown">
+	    <a href="#" class="dropdown-toggle navbar-right navbar-button" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span> <b class="caret"></b></a>
+		
+		<div class='dropdown-menu'>
+			<%= form_tag search_time_entries_path, method: :get, class:'inline-date-search-form' do %>
+	    	  <div class="from-to-fields">
+			    <div class="from-field">
+				  <%= label_tag :from %>
+				  <%= text_field :from, nil %>
+			    </div>
+		        <div class="to-field">
+				  <%= label_tag :to %>
+  				  <%= text_field_tag :to, nil %>
+			    </div>
+		      </div>
+			  <div class="search-button">
+			    <button class="search-button">Search</button>
+		  	  </div>
+			<% end %>
+	      </div>
+	      
+      </li>
+    </ul>
+  </div>
+</nav>

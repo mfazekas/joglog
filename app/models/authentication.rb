@@ -7,7 +7,6 @@ class Authentication < ActiveRecord::Base
 
   def self.create_from_authhash(authhash,user=nil)
     info = authhash['info']
-    byebug
     user ||= User.create!(email: info['email'], first_name: info['first_name'], last_name: info['last_name'])
     user.authentications.create!(self.authhash_to_attributes(authhash))
   end
