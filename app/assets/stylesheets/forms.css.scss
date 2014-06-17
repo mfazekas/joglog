@@ -1,36 +1,16 @@
 @import "bootstrap";
 
-form.new_time_entry {
+.dbg { border: solid 1px red; }
+
+form.new-time-entry {
   @extend .form-horizontal;
-  div.field {
-    @extend .form-group;
-	label {
-	  @extend .col-sm-2;
-	  @extend .control-label;
-	}
-	div.field-input {
-	  @extend .col-sm-10; 
-	  input {
-	    @extend .form-control;
-	  }
-	  select {
-	  	@extend .form-control;
-		@extend .col-md-2;
-	  }
-	}
-  }
-  div.submit {
-    @extend .from-group;
-	div.submit-button {
-	  @extend .col-sm-offset-2;
-	  @extend .col-sm-10;
-  	  input {
-	    @extend .btn;
-	    @extend .btn-primary;
-	  }
-	}
-  }
-  .field_with_errors {
-    @extend .has-error;
+
+  input.btn { @extend .btn-primary; }
+  .form-group {
+    label { @extend .col-sm-2; }
+    div.field-input {@extend .col-sm-10; }
+    div.col-datetime-date { @extend .col-xs-8; @extend .col-md-6;}
+    div.col-datetime-time { @extend .col-xs-4; @extend .col-md-3;}
   }
 }
+

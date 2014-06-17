@@ -8,7 +8,7 @@ gem 'omniauth', '~> 1.2.1'
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'font-awesome-sass', '~> 4.1.0'
-gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
+gem 'bootstrap-datepicker-rails', '~> 1.3.0.2', git: 'https://github.com/mfazekas/bootstrap-datepicker-rails', branch: 'zindex_chrome_fix'
 
 group :development, :test do
   gem 'spring-commands-rspec'

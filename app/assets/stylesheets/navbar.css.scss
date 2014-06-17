@@ -1,27 +1,7 @@
 @import "bootstrap";
 
-form.inline-date-search-form {
-	@extend .navbar-form;
-	div.from-to-fields {
-		width: 320px;
-		div.from-field {
-			@extend .form-group;
-			input { @extend .form-control; }
-		}
-		div.to-field {
-			@extend .form-group;
-			@extend .pull-right;
-			input { @extend .form-control; }
-		}
-	}
-
-	div.search-button {
-		@extend .form-group;
-		@extend .pull-right;
-		button {
-			@extend .btn;
-			@extend .navbar-btn;
-			@extend .btn-primary;
-		}
-	}
+div.input-daterange {
+  .input.form-control {
+    width: 8em;
+  }
 }

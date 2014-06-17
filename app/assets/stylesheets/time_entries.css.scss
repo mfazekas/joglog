@@ -6,7 +6,6 @@ table.time-entries {
   @extend .table-hover;
 }
 
-a.new-time-entry {
-  @extend .btn;
+button.btn.new-time-entry {
   @extend .btn-primary;
 }

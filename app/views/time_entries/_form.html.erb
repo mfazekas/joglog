@@ -1,5 +1,6 @@
+<% options||={} %>
 <div class="jumbotron">
-<%= form_for time_entry,html: {role:"form"} do |f| %>
+<%= form_for time_entry,{html: {role:"form"}}.merge(options[:form_options] || {}) do |f| %>
     <%= render partial: 'shared/error_messages', locals: {target: f.object }%>
 	<div class="field">
 	  <%= f.label :date %>

@@ -70,6 +70,61 @@ describe TimeEntry, type: :model do
     end
   end
 
+  describe "in_range" do
+    before do
+      @base_time = DateTime.now
+      @time_entries = (1..10).map do |i|
+        time = @base_time+i.days
+        TimeEntry.create date:time, time:20, distance:100
+      end
+      @base_scope = TimeEntry.where(id:@time_entries.map{|i|i.id})
+    end
+    context "when none defined" do
+      it "will return full scope" do
+        expect(@base_scope.in_range(nil,nil)).to eq(@base_scope.all)
+      end
+    end
+    context "when both defined" do
+      it "returns in between" do
+        from=@base_time+2.days
+        to=@base_time+5.days
+        expect(@base_scope.in_range(from,to).to_a).to eq(@base_scope.to_a.select {|i| i.date <= to and i.date >= from })
+      end
+    end
+    context "when only end defined" do
+      it "returns dates before end" do
+        to=@base_time+5.days
+        from=nil
+        expect(@base_scope.in_range(from,to).to_a).to eq(@base_scope.to_a.select {|i| i.date <= to })
+      end
+    end
+    context "when only start defined" do
+      it "returns dates after start" do
+        to=nil
+        from=@base_time+5.days
+        expect(@base_scope.in_range(from,to).to_a).to eq(@base_scope.to_a.select {|i| i.date >= from })
+      end
+    end
+  end
+  
+  describe "sums_by_week" do
+    before do
+      @base_time = DateTime.commercial(2014,02,01)
+      @time_entries = (0..13).map do |i|
+        time = @base_time+i.days
+        TimeEntry.create date:time, time:20, distance:100
+      end
+      @base_scope = TimeEntry.where(id:@time_entries.map{|i|i.id})
+    end
+    
+    it "should return sum and averages" do
+      ret = @base_scope.sums_by_week.map{|i|a = i.attributes; a.delete('id'); a}
+      expect(ret.size).to eq(2)
+      expect(ret).to eq([{"total_distance"=>700, "total_time"=>140, "week"=>106743},
+                         {"total_distance"=>700, "total_time"=>140, "week"=>106744}])
+    end
+  end
+
   describe "time_in_minutes" do
     subject { TimeEntry.new(distance:1000,time:360)}
     
@@ -85,16 +140,14 @@ describe TimeEntry, type: :model do
       expect(subject.time_in_minutes).to eq(nil)
     end
     
-    xit "should return validation errors for this too" do
-      subject.time_in_minutes=nil
-      subject.save
-      expect(subject.errors.get(:time)).to eq(['is not a number'])
-      expect(subject.errors.get(:time_in_minutes)).to eq(['is not a number'])
-    end
-    
     it "sets time to nil when it is nil" do
       subject.time_in_minutes=nil
       expect(subject.time).to eq(nil)
+    end
+    
+    it "calculates using int multiplication not string" do
+      subject.time_in_minutes="60"
+      expect(subject.time).to eq(3600)
     end
   end
   

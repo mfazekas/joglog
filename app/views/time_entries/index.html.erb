@@ -1,7 +1,6 @@
 <%= render partial: 'navbar', locals: {act: :index} %>
 
-<h1>Listing time entries</h1>
-
+<h1>Time entries</h1>
 
 <table class="time-entries">
   <thead>
@@ -24,4 +23,66 @@
   </tbody>
 </table>
 
-<%= link_to "New entry", new_time_entry_path(), class: "new-time-entry" %>
+<button class="btn new-time-entry" data-toggle="modal" data-target="#new-time-entry-modal"><span class="glyphicon glyphicon-plus"></span> New entry</button>
+
+<div class="modal fade" id="new-time-entry-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">New entry</h4>
+      </div>
+      <div class="modal-body">
+		 <%= form_for @time_entry,remote: true, html: {role:"form", class:"form-horizontal new-time-entry"} do |f| %>
+		    <%= render partial: 'shared/error_messages', locals: {target: f.object }%>
+		 	<div class="form-group date">
+		 	  <%= f.label :date, class:"control-label" %>
+		 	  <div class="field-input">
+		 		<div class="row">
+		 		  <div class="col-datetime-date"> 
+		 		    <div class="input-group date">
+		 	          <%= text_field_tag 'time_entry[date][date]', f.object.date.try(:strftime,'%m/%d/%Y'), data: {behaviour: 'datepicker'}, placeholder: "MM/DD/YYYY", class:"form-control"  %>
+		 		      <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+		 		    </div>
+		 	      </div>
+		           <div class="col-datetime-time">
+		             <%= text_field_tag 'time_entry[date][time]', f.object.date.try(:strftime,'%H:%M') ,placeholder: "HH:MM", class:"form-control" %>
+		 	      </div>
+		 	    </div>
+		 	    <span class="help-inline">Date in MM/DD/YYYY HH:MM format</span>
+		 	  </div>
+	  
+		 	</div>
+		 	<div class="form-group time">
+		 	  <%= f.label :time, class:"control-label" %>
+		 	  <div class="field-input">
+		 		<div class='input-group'>
+		   	    	<%= f.number_field :time_in_minutes, class:"form-control" %>
+		 			<span class="input-group-addon">minutes</span>
+		 		</div>
+		 		<span class="help-inline">Duration of the run in minutes</span>
+		 	  </div>
+	        </div>
+		 	<div class="form-group distance">
+		   	  <%= f.label :distance, class:"control-label" %>
+		 	  <div class="field-input">
+		 		<div class='input-group'>
+		 	      <%= f.number_field :distance, class:"form-control" %>
+		 	  	  <span class="input-group-addon">meters</span>
+		 		</div>
+		 		<span class="help-inline">Distance of the run meters</span>
+		 	  </div>
+	  
+		 	</div>
+			<div class="modal-footer">
+		 	  <div class="submit from-group">
+		 	    <div class="submit-button">
+		 	      <%= f.submit class:"btn" %>
+		 	    </div>
+		      </div>
+		    </div>
+		 <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
