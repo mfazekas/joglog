@@ -27,6 +27,7 @@ RSpec.configure do |config|
   config.include LoginHelper, type: :api
   config.include JsonHelper, type: :api
   config.include LoginHelper, type: :request
+  config.include DisableTransactionalFixtures, type: :feature, json: true
 
   Capybara.register_driver :chrome do |app|
     Capybara::Selenium::Driver.new(app, browser: :chrome)
@@ -41,6 +42,19 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  # clear db
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each, js:true) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each, js:true) do
+    DatabaseCleaner.clean
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
