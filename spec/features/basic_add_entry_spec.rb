@@ -37,6 +37,19 @@ RSpec.describe "Login", type: :feature, js: true do
       expect(page).to have_content('Time entries')
       expect(page).to have_content('12.3 kilometers')
       expect(page).to have_content('12.3 km/h')
+
+      # add another
+      click_button("New entry")
+      fill_in('Distance',with:'10000')
+      fill_in("Time",with: "60")
+      click_button("Create Time entry")
+
+      # switch to weekly
+      click_link("Weekly")
+
+      expect(page).to have_content('Weekly report')
+      expect(page).to have_content('22.3 kilometers') 
+      expect(page).to have_content('11.2 km/h')
     end
   end
 end
