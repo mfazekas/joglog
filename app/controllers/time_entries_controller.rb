@@ -7,8 +7,6 @@ class TimeEntriesController < ApplicationController
   def create
     params = time_entries_param
     
-    
-    
     datetime_str = params[:date][:date]+" "+params[:date][:time]
     errors={}
     begin
@@ -42,6 +40,9 @@ class TimeEntriesController < ApplicationController
     from,to = from_to_params
     @time_entries = current_user.time_entries.in_range(from,to)
     @time_entry = TimeEntry.new(user:current_user, date:DateTime.now)
+    respond_to do |format|
+      format.json { render json: @time_entries.to_json(json_opts) }
+    end
   end
 
   def weekly
@@ -65,5 +66,9 @@ class TimeEntriesController < ApplicationController
  
   def time_entries_param
     params.require(:time_entry).permit(:time_in_minutes,:distance,date:[:time,:date]) 
+  end
+
+  def json_opts
+    {only: [:date,:time,:distance]}
   end
 end

@@ -22,8 +22,14 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   OmniAuth.config.test_mode = true
 
+  config.include RSpec::Rails::RequestExampleGroup, type: :api
+
+  config.include LoginHelper, type: :api
+  config.include JsonHelper, type: :api
+  config.include LoginHelper, type: :request
+
   Capybara.register_driver :chrome do |app|
-    Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
   end
 
   Capybara.javascript_driver = :chrome
