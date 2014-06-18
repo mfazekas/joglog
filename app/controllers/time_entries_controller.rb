@@ -1,9 +1,4 @@
 class TimeEntriesController < ApplicationController
-  def new
-    @time_entry = current_user.time_entries.build
-    @time_entry.date = DateTime.now
-  end
-
   def create
     params = time_entries_param
     
