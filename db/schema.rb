@@ -13,15 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20140615220226) do
 
-  create_table "authentications", force: true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
     t.string  "authprovider"
     t.string  "uid"
     t.integer "user_id"
   end
 
-  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
-  create_table "time_entries", force: true do |t|
+  create_table "time_entries", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "date"
     t.integer  "distance"
@@ -29,9 +32,9 @@ ActiveRecord::Schema.define(version: 20140615220226) do
     t.integer  "week"
   end
 
-  add_index "time_entries", ["user_id"], name: "index_time_entries_on_user_id"
+  add_index "time_entries", ["user_id"], name: "index_time_entries_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"

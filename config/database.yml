@@ -19,4 +19,3 @@ development:
 test:
   <<: *default
   database: joglog_test
-

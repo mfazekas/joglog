@@ -12,16 +12,22 @@
  *
  */
 
-@import "bootstrap-sprockets";
-
 $grid-float-breakpoint: 420px;
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+@import "bootstrap-social";
 
 @import "forms";
 @import "navbar";
 @import "sessions";
 @import "time_entries";
+
+
 
 div.container {
   margin-bottom: 23px;
