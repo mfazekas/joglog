@@ -39,6 +39,8 @@ class TimeEntriesController < ApplicationController
 
   def index
     from,to = from_to_params
+    @from_time = from
+    @to_time = to
     @time_entries = current_user.time_entries.in_range(from,to)
     @time_entry = TimeEntry.new(user:current_user, date:DateTime.now)
     respond_to do |format|

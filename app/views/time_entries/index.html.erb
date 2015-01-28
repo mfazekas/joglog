@@ -1,6 +1,13 @@
 <%= render partial: 'navbar', locals: {act: :index} %>
 
-<h1>Time entries</h1>
+<div class='row'>
+  <div class='col-xs-8'>
+    <h1>Time entries</h1>
+  </div>
+  <div class='col-xs-4'>
+    <button class="btn new-time-entry pull-right" data-toggle="modal" data-target="#new-time-entry-modal"><span class="glyphicon glyphicon-plus"></span> New entry</button>
+  </div>
+</div>
 
 <table class="time-entries">
   <thead>
@@ -23,7 +30,7 @@
   </tbody>
 </table>
 
-<button class="btn new-time-entry" data-toggle="modal" data-target="#new-time-entry-modal"><span class="glyphicon glyphicon-plus"></span> New entry</button>
+
 
 <div class="modal fade" id="new-time-entry-modal">
   <div class="modal-dialog">

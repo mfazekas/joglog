@@ -1,20 +1,21 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-	  <a class="navbar-brand" href="#">joglog</a>
+      <a class="navbar-brand" href="#">joglog</a>
     </div>
     <form class="navbar-form navbar-right date-range-search" role="search">
       <div class="input-daterange input-group" id="datepicker">
-          <input type="text" class="input form-control from-date" name="start" placeholder="dd/mm/yyyy" />
-          <span class="input-group-addon">to</span>
-          <input type="text" class="input form-control to-date" name="end" placeholder="dd/mm/yyyy" />
-          <span class="input-group-btn"><button class="btn btn-default range-search" type="submit"><span class="glyphicon glyphicon-search"></span></button></span>
+        <input type="text" class="input form-control from-date" name="start" placeholder="dd/mm/yyyy" value="<%= @from_time.try(:to_s,:picker) %>" />
+        <span class="input-group-addon">to</span>
+        <input type="text" class="input form-control to-date" name="end" placeholder="dd/mm/yyyy" value="<%= @to_time.try(:to_s,:picker) %>" />
+        <span class="input-group-btn">
+          <button class="btn btn-default range-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
       </div>
     </form>
     <ul class="nav navbar-nav navbar-right">
-        
-	  <li class="<%= act == :index ? "active" : ""%>"><a href="<%= time_entries_url %>">Entries <span class="glyphicon glyphicon-list"></span></a></li>	
-	  <li class="<%= act == :weekly ? "active" : ""%>"><a href="<%= weekly_time_entries_url %>">Weekly <span class="glyphicon glyphicon-stats"></span></a></li>	
+      <li class="<%= act == :index ? "active" : ""%>"><a href="<%= time_entries_url %>">Entries <span class="glyphicon glyphicon-list"></span></a></li> 
+      <li class="<%= act == :weekly ? "active" : ""%>"><a href="<%= weekly_time_entries_url %>">Weekly <span class="glyphicon glyphicon-stats"></span></a></li>
     </ul>
   </div>
 </nav>

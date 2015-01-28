@@ -5,8 +5,6 @@ clean_errors = (form)->
   
 ready_callback = ->
   $('#new_time_entry').on('ajax:success', (e,data,status,xhr)->
-    clean_errors $(this)
-    $('#new_time_entry').append xhr.responseText
     $('#new-time-entry-modal').modal('hide');
     Turbolinks.visit('/time_entries')
   ).on "ajax:error", (e,xhr,status,error) ->

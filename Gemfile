@@ -6,7 +6,7 @@ gem 'omniauth-gplus', '~> 2.0.1'
 gem 'omniauth', '~> 1.2.1'
 
 # Bootstrap
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.3.3'
 gem 'font-awesome-sass', '~> 4.1.0'
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2', git: 'https://github.com/mfazekas/bootstrap-datepicker-rails', branch: 'zindex_chrome_fix'
 
@@ -15,21 +15,20 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.1'
   gem 'guard-rspec'
   gem 'shoulda-matchers'
-  if `uname` =~ /Darwin/
-    gem 'terminal-notifier-guard'
-    gem 'rb-fsevent'
-  end
+  gem 'terminal-notifier-guard', require: false
+  gem 'rb-fsevent', require: false
   gem 'byebug'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'poltergeist'
   gem 'database_cleaner'
 end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'rails', '~> 4.2.0'
+gem 'web-console', '~> 2.0'
+
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -62,4 +61,6 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'rails_12factor', group: :production
 

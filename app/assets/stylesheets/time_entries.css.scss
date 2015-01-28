@@ -7,5 +7,7 @@ table.time-entries {
 }
 
 button.btn.new-time-entry {
+  margin-bottom: 10px;
+  margin-top: 20px;
   @extend .btn-primary;
 }

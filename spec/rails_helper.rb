@@ -5,6 +5,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -29,11 +30,11 @@ RSpec.configure do |config|
   config.include LoginHelper, type: :request
   config.include DisableTransactionalFixtures, type: :feature, json: true
 
-  Capybara.register_driver :chrome do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new app
   end
 
-  Capybara.javascript_driver = :chrome
+  Capybara.javascript_driver = :poltergeist
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
